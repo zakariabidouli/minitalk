@@ -1,5 +1,5 @@
 #include "minitalk.h"
-#define MAX_CHARS 100
+#define MAX_CHARS 8
 typedef struct s_string
 {
 	char            buffer[MAX_CHARS];
@@ -28,7 +28,6 @@ int main(int argc, char *argv[])
 	signal(SIGUSR1, func1);
 	signal(SIGUSR2, func2);
 
-	
 	while(1)
 	{
 		printf("\nPEND");
