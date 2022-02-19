@@ -8,27 +8,42 @@ int main(int argc, char  *argv[])
 	int	i;
 
 	i = -1;
+	str = malloc(sizeof(char) * 9);
+	if(!str)
+		return(0);
 	str = argv[2];
-	while(1)
-	{
-		while(str[i])
+	str [9] = '\0';
+	// while(1)
+	// {
+		while(1)
 		{
-			while(++i && i <=  8)
+			if(str[i])
 			{
-				if((str[i] & 1) == 1)
+				printf("123");
+				while(++i && i <=  8)
 				{
-					if(kill(atoi(argv[1]), SIGUSR1) == -1)
-						return(0);
+					if((str[i] & 1) == 1)
+					{
+						if(kill(atoi(argv[1]), SIGUSR1) == -1)
+						{
+							printf("SEND1");
+							return(0);
+						}
+					}
+					else if((str[i] & 1) == 0)
+					{
+						if(kill(atoi(argv[1]), SIGUSR2) == -1)
+						{
+							printf("SEND0");
+							return(0);
+						}
+					}
+					str[i] >>= i;
+					usleep(200);
 				}
-				else if((str[i] & 1) == 0)
-				{
-					if(kill(atoi(argv[1]), SIGUSR2) == -1)
-						return(0);
-				}
-				str[i] >>= i;
 			}
-			sleep(5);
+			break;
 		}
-	}	
+	// }	
 	return 0;
 }

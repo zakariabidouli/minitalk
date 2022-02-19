@@ -32,30 +32,25 @@ int main(int argc, char *argv[])
 	str = malloc((sizeof(char) * 8) + 1);
 	if(!str)
 		return(0);
-	i = 0;
-	while(1)
-	{
-		while(str[i])
+	i = -1;
+	
+		while(1)
 		{
-			while(i++ && i <= 8)
+			while(++i && i <= 8)
 			{	
 				if(signal(SIGUSR1, func1))
 				{	
-					str[i] = 1;
+					str[i] = i | 1;
 				}
 				else if(signal(SIGUSR2, func2))
 				{
-					str[i] = 0;
+					str[i] = i | 0;
 				}
-				else
-				{
-					printf("ERROR");
-					return(0);
-				}
-				i <<= 1;
+				usleep(200);
+				str[i] <<= i;
 			}
-			sleep(5);
+			usleep(200);
 		}
-	}
+	
 	return 0;
 }
