@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
 			{	
 				if(signal(SIGUSR1, func1))
 				{	
-					str[i] = i | 1;
+					str[i] = i & 1;
 				}
 				else if(signal(SIGUSR2, func2))
 				{
-					str[i] = i | 0;
+					str[i] = i & 1;
 				}
 				usleep(200);
 				str[i] <<= i;
