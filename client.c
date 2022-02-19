@@ -9,24 +9,26 @@ int main(int argc, char  *argv[])
 
 	i = -1;
 	str = argv[2];
-	while(str[i])
+	while(1)
 	{
-		while(++i && i <=  8)
+		while(str[i])
 		{
-			if((str[i] & 1) == 1)
+			while(++i && i <=  8)
 			{
-				if(kill(atoi(argv[1]), SIGUSR1) == -1)
-					return(0);
+				if((str[i] & 1) == 1)
+				{
+					if(kill(atoi(argv[1]), SIGUSR1) == -1)
+						return(0);
+				}
+				else if((str[i] & 1) == 0)
+				{
+					if(kill(atoi(argv[1]), SIGUSR2) == -1)
+						return(0);
+				}
+				str[i] >>= i;
 			}
-			else if((str[i] & 1) == 0)
-			{
-				if(kill(atoi(argv[1]), SIGUSR2) == -1)
-					return(0);
-			}
-			
+			sleep(5);
 		}
-		str[i] >>= i;
-		usleep(100);
-	}
+	}	
 	return 0;
 }
