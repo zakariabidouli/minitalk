@@ -10,47 +10,48 @@ typedef struct s_string
 
 void	func1(int signum)
 {
-	printf("\nHELLO");
-
+	int i = 0;
+	while(i++)
+		printf("\n%d",i);
 
 }
 
 void	func2(int signum)
 {
-	printf("\nHELLOWORD");
-
-
+		printf("HELLO");
 }
 
 int main(int argc, char *argv[])
 {
 	int	i;
 	int	j;
-	unsigned char	*str;
+	char	*bit;
+	char	str[MAX_CHARS];
 
 	printf("Server PID:%d\n", getpid());
-	str = malloc((sizeof(char) * 8) + 1);
-	if(!str)
-		return(0);
-	i = -1;
+
+	i = 0;
 	
-		while(1)
-		{
-			while(++i && i <= 8)
-			{	
-				if(signal(SIGUSR1, func1))
-				{	
-					str[i] = i & 1;
-				}
-				else if(signal(SIGUSR2, func2))
-				{
-					str[i] = i & 1;
-				}
+	while(i && i < 255)
+	{	
+		j = 0;
+		while(j < 8)
+		{	
+			bit = malloc((sizeof(char) * 8) + 1);
+			if(!bit)
+				return(0);
+			bit[8] = '\0';
+			if(signal(SIGUSR1, func1))
+				bit[j] = 1;;
+			else if(signal(SIGUSR2, func2))
+				bit[j] = 0;
+			bit[j] <<= j;
 				usleep(200);
-				str[i] <<= i;
 			}
-			usleep(200);
+			str[i] = atoi(bit);
+			free(bit);
+			i++;		
 		}
 	
-	return 0;
+	return 1;
 }
