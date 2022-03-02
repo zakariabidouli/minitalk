@@ -1,46 +1,54 @@
 #include "minitalk.h"
 
-
-void	func1(int signum)
+void	print(void)
 {
-	int i = 0;
-	while(i++)
-		printf("\n%d",i);
-
-}
-
-void	func2(int signum)
-{
-		printf("HELLO");
-}
-int main(int argc, char *argv[])
-{
-	int	i;
-	int	j;
-	char	*bit;
-	static char	*str;
-
-	printf("Server PID:%d\n", getpid());
-
-	i = -1;
-	while(str[++i])
-	{	
-		bit = malloc((sizeof(char) * 8) + 1);
-		if(!bit)
-			return(0);
-		bit[8] = '\0';
-		j = 0;
-		while(j < 8)
-		{	
-			bit[j] <<= j;
-			if(signal(SIGUSR1, func1))
-				bit[j] = 1;
-			else if(signal(SIGUSR2, func2))
-				bit[j] = 0;
-			usleep(200);
+	while (1)
+	{
+		pause();
+		if (g_ch.bit == 8)
+		{
+			if (g_ch.ch == '\0')
+				ft_putchar_fd('\n', 1);
+			else
+				ft_putchar_fd(g_ch.ch, 1);
+			g_ch.bit = 0;
+			g_ch.ch = 0;
 		}
-		str[i] = atoi(bit);
-		free(bit);
 	}
-	return 1;
+}
+
+void	function_1(int signum)
+{
+	if (signum == SIGUSR1)
+	{
+		g_ch.ch &= 1 << g_ch.bit;
+		g_ch.bit++;
+	}
+}
+
+void	function_2(int signum)
+{
+	if (signum == SIGUSR2)
+	{
+		g_ch.ch &= 1 << g_ch.bit;
+		g_ch.bit++;
+	}
+}
+
+int	main(void)
+{
+	int	pid;
+	int	i;
+
+	pid = getpid();
+	g_ch.bit = 0;
+	g_ch.ch = 0;
+	ft_putstr_fd("Process is running... PID: ", 1);
+	ft_putnbr_fd(pid, 1);
+	ft_putchar_fd('\n', 1);
+
+	signal(SIGUSR1, function_1);
+	signal(SIGUSR2, function_2);
+
+	print();
 }

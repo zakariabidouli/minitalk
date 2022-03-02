@@ -5,12 +5,13 @@
 int main(int argc, char  *argv[])
 {
 	char	*str;
-	int	i;
-	int	j;
+	int		pid;
+	int		i;
+	int		j;
 
+	pid = ft_atoi(argv[1]);
 	str = argv[2];
 	i = -1;
-
 	while(str[++i])
 	{
 		j = 0;
@@ -19,12 +20,12 @@ int main(int argc, char  *argv[])
 			str[i] >>= j; //0
 			if((str[i] & 1) == 1)
 			{
-				if (kill(atoi(argv[1]), SIGUSR1) == -1)
+				if (kill(pid, SIGUSR1) == -1)
 					return(0);
 			}
 			else
 			{
-				if(kill(atoi(argv[1]), SIGUSR2) == -1)
+				if(kill(pid, SIGUSR2) == -1)
 					return(0);
 			}
 			j++;

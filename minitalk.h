@@ -2,10 +2,22 @@
 # define MINITALK_H
 
 #include<signal.h>
-#include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
 #include<string.h>
 
+typedef struct s_char
+{
+	int	bit;
+	int	ch;
+}	t_char;
+
+t_char	g_ch;
+
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_atoi(const char *str);
 
 #endif
+
