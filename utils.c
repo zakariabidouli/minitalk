@@ -59,3 +59,10 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
+int	ft_isspace_isdigit(char c, int flag)
+{
+	if (flag == 0)
+		return ((c >= 9 && c <= 13) || c == ' ');
+	return (c >= 48 && c <= 57);
+}
+
