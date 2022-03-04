@@ -23,13 +23,18 @@ int main(int argc, char  *argv[])
 				if (kill(pid, SIGUSR1) == -1)
 					return(0);
 			}
+			else if (i < -1)
+			{
+				ft_putstr_fd("Error! Bad signal, stop execution...\n", 2);
+				return 0;
+			}
 			else
 			{
 				if(kill(pid, SIGUSR2) == -1)
 					return(0);
 			}
 			j++;
-			usleep(200);
+			usleep(100);
 		}
 	}	
 	return 1;

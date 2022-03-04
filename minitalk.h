@@ -12,7 +12,7 @@ typedef struct s_char
 	int	ch;
 }	t_char;
 
-t_char	g_ch;
+t_char	get_char;
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
