@@ -7,9 +7,9 @@ void	print(void)
 		pause();
 		if (get_char.bit == 8)
 		{
-			if (get_char.ch == '\0')
-				ft_putchar_fd('\n', 1);
-			else
+			// if (get_char.ch == '\0')
+			// 	ft_putchar_fd('\n', 1);
+			// else
 				ft_putchar_fd(get_char.ch, 1);
 			get_char.bit = 0;
 			get_char.ch = 0;
@@ -21,7 +21,7 @@ void	function_1(int signum)
 {
 	if (signum == SIGUSR1)
 	{
-		get_char.ch ^= (1 << get_char.bit);
+		get_char.ch ^= 1<<get_char.bit;
 		get_char.bit++;
 	}
 }
@@ -29,10 +29,7 @@ void	function_1(int signum)
 void	function_2(int signum)
 {
 	if (signum == SIGUSR2)
-	{
-	
 		get_char.bit++;
-	}
 }
 
 int	main(void)
@@ -49,6 +46,13 @@ int	main(void)
 
 	signal(SIGUSR1, function_1);
 	signal(SIGUSR2, function_2);
-
 	print();
+	
+	return (1);
 }
+
+
+// 0000	001 << bit
+// 0000 000 ^ 0000 001 = 0000 001 
+// 0000 000 ^ 0000 010 = 0000 010 
+// 						 0000 011	

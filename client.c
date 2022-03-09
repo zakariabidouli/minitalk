@@ -17,31 +17,26 @@ int main(int argc, char  *argv[])
 		j = 0;
 		while(j < 8)
 		{
-			str[i] >>= j; //0
-			if((str[i] & 1) == 1)
+
+			if((str[i] >> j  & 1) == 1) // 000 0110 & 1
 			{
 				if (kill(pid, SIGUSR1) == -1)
 					return(0);
 			}
-			else if (i < -1)
-			{
-				ft_putstr_fd("Error! Bad signal, stop execution...\n", 2);
-				return 0;
-			}
-			else
+			else 
 			{
 				if(kill(pid, SIGUSR2) == -1)
 					return(0);
 			}
 			j++;
-			usleep(100);
+			usleep(250);
 		}
 	}	
 	return 1;
 }
 
 //
-	// 5 => 0 
-	// 1 => 0000 0001
+	// 5 => 0000 0101;
+	// 1 => 0000 0001;
 
 	// 10
