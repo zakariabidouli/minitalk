@@ -1,13 +1,8 @@
 .PHONY: all clean fclean re
 
-NAME 	= minitalk
-
 CC 		= gcc
 
 FLAGS	= -Wall -Wextra -Werror
-
-
-SRC 	 =  server.c utils.c client.c
 
 all: s c
 
