@@ -6,43 +6,46 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/09 22:12:32 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:11:30 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int main(int argc, char  *argv[])
+int main(int ac, char  **av)
 {
 	char	*str;
 	int		pid;
 	int		i;
 	int		j;
 
-	pid = ft_atoi(argv[1]);
-	str = argv[2];
-	i = -1;
-	while(str[++i])
+	if (ac == 3)
 	{
-		j = 0;
-		while(j < 8)
+		pid = ft_atoi(av[1]);
+		str = av[2];
+		i = -1;
+		while(str[++i])
 		{
+			j = 0;
+			while(j < 8)
+			{
 
-			if((str[i] >> j  & 1) == 1) // 000 0110 & 1
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					return(0);
+				if((str[i]>>j  & 1) == 1) // 000 0110 & 1
+				{
+					if (kill(pid, SIGUSR1) == -1)
+						return(0);
+				}
+				else 
+				{
+					if(kill(pid, SIGUSR2) == -1)
+						return(0);
+				}
+				j++;
+				usleep(250);
 			}
-			else 
-			{
-				if(kill(pid, SIGUSR2) == -1)
-					return(0);
-			}
-			j++;
-			usleep(250);
-		}
-	}	
-	return 1;
+		}	
+		return 1;
+	}
 }
 
 //
