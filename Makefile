@@ -1,6 +1,6 @@
 .PHONY: all clean fclean re
 
-NAME 	= server client
+NAME 	= minitalk
 
 CC 		= gcc
 
@@ -9,29 +9,27 @@ FLAGS	= -Wall -Wextra -Werror
 
 SRC 	 =  server.c utils.c client.c
 
-all: $(NAME)
-
+# default: server
+# # all: $(NAME)
 server.o: server.c utils.c minitalk.h
-    $(CC) $(FLAGS) -c server.c utils.c -o server
-    
-client.o: client.o utils.o minitalk.h
-     $(CC) $(FLAGS) -c client.c utils.c -o client
+	$(CC) $(FLAGS) -c server.c utils.c
+
+utils.o: utils.c minitalk.h
+	$(CC) $(FLAGS) -c utils.c
+
+client.o: client.c utils.c minitalk.h
+	$(CC) $(FLAGS) -c client.c utils.c
 
 server: server.o utils.o
-	ar -rc server.o utils.o #run server 
+	$(CC) $(FLAGS)  server.o utils.o -o server
 
-client: client.o utils.o
-	ar -rc server.o utils.o #pid  #string
- 
-minitalk : $(CC) $(FLAGS) -c client.o server.o 
-        client.o server.o client.o : $(CC) $(FLAGS) -c client.o minitalk.h
-    - c client.c server.o : $(CC) $(FLAGS) -c server.o minitalk.h
-    - c server.c
-
+client: client.o utils.o 
+	$(CC) $(FLAGS)  client.o utils.o -o client
+	
 clean:
-    rm -rf *.o
+	rm -rf *.o *~
 
 fclean: clean
-    rm -rf $(NAME)
+	rm -rf client server
 
 re: fclean all
