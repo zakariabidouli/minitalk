@@ -9,8 +9,9 @@ FLAGS	= -Wall -Wextra -Werror
 
 SRC 	 =  server.c utils.c client.c
 
-# default: server
-# # all: $(NAME)
+all: s c
+
+
 server.o: server.c utils.c minitalk.h
 	$(CC) $(FLAGS) -c server.c utils.c
 
@@ -20,10 +21,10 @@ utils.o: utils.c minitalk.h
 client.o: client.c utils.c minitalk.h
 	$(CC) $(FLAGS) -c client.c utils.c
 
-server: server.o utils.o
+s: server.o utils.o
 	$(CC) $(FLAGS)  server.o utils.o -o server
 
-client: client.o utils.o 
+c: client.o utils.o 
 	$(CC) $(FLAGS)  client.o utils.o -o client
 	
 clean:
