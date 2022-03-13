@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/13 13:48:35 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/13 16:07:04 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int main(int ac, char  **av)
 			}
 		}	
 	}
-	ft_putstr_fd("Message reiceved by server ", 1);
-	exit(0);
+		ft_putstr_fd("Message reiceved by server ", 1);
+		exit(0);
 }
 
 //

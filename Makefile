@@ -38,6 +38,6 @@ clean:
 	rm -rf *.o *~
 
 fclean: clean
-	rm -rf client server
+	rm -rf client server2 server
 
 re: fclean all

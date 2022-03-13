@@ -6,11 +6,12 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:42:43 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/13 13:46:53 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/13 14:21:12 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <stdio.h>
 
 void	print(void)
 {
@@ -72,6 +73,10 @@ int	main(void)
 	sigaction(SIGUSR2, &act2, NULL);
 	
 	print();
-	
 	return (1);
 }
+
+// 0000	001 << bit
+// 0000 000 ^ 0000 001 = 0000 001 
+// 0000 000 ^ 0000 010 = 0000 010 
+// 						 0000 011	

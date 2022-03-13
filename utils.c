@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:57 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/09 22:12:59 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/13 16:08:27 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,9 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-int	ft_isspace_isdigit(char c, int flag)
+int	ft_isspace_isdigit(char c, int flg)
 {
-	if (flag == 0)
+	if (flg == 0)
 		return ((c >= 9 && c <= 13) || c == ' ');
 	return (c >= 48 && c <= 57);
 }
-

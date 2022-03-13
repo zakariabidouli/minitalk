@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:40 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/09 22:12:43 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/13 16:07:31 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *str);
 int		ft_isspace_isdigit(char c, int flag);
+
 
 #endif
 
