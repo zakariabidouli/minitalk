@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/10 12:11:30 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/13 11:28:20 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int main(int ac, char  **av)
 				if((str[i]>>j  & 1) == 1) // 000 0110 & 1
 				{
 					if (kill(pid, SIGUSR1) == -1)
+					{
+						ft_putstr_fd("Message reiceved by server ", 1);
 						return(0);
+					}
 				}
 				else 
 				{
@@ -44,8 +47,9 @@ int main(int ac, char  **av)
 				usleep(250);
 			}
 		}	
-		return 1;
 	}
+	ft_putstr_fd("Message reiceved by server ", 1);
+	exit(0);
 }
 
 //
