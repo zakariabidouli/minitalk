@@ -6,7 +6,6 @@ FLAGS	= -Wall -Wextra -Werror
 
 all: c2 s2 c
 
-
 # server.o: server.c utils.c minitalk.h
 # 	$(CC) $(FLAGS) -c server.c utils.c
 
@@ -38,6 +37,6 @@ clean:
 	rm -rf *.o *~
 
 fclean: clean
-	rm -rf client server2 server
+	rm -rf client client2 server2
 
 re: fclean all
