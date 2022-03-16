@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/13 11:28:20 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:09:51 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int main(int ac, char  **av)
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
+		if(kill(0, pid) != -1)
+		{
+			ft_putstr_fd("ERROR: Wrong PID ", 1);
+			exit(0);
+		}
 		str = av[2];
 		i = -1;
 		while(str[++i])
@@ -33,10 +38,7 @@ int main(int ac, char  **av)
 				if((str[i]>>j  & 1) == 1) // 000 0110 & 1
 				{
 					if (kill(pid, SIGUSR1) == -1)
-					{
-						ft_putstr_fd("Message reiceved by server ", 1);
 						return(0);
-					}
 				}
 				else 
 				{
@@ -44,13 +46,18 @@ int main(int ac, char  **av)
 						return(0);
 				}
 				j++;
-				usleep(250);
+				usleep(150);
 			}
 		}	
+		ft_putstr_fd("Message reiceved by server ", 1);
+		exit(0);
 	}
-	ft_putstr_fd("Message reiceved by server ", 1);
-	exit(0);
+	else 
+	{
+		ft_putstr_fd("ERROR :Please enter arguments in this form : PID + \"str\" ", 1);
+	}
 }
+
 
 //
 	// 5 => 0000 0101;
