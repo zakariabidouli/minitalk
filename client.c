@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/15 12:41:06 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:15:57 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char  **av)
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
-		if(kill(0, pid) != -1)
+		if((kill(0, pid) != -1))
 		{
 			ft_putstr_fd("ERROR: Wrong PID ", 1);
 			exit(0);
@@ -38,12 +38,18 @@ int main(int ac, char  **av)
 				if((str[i]>>j  & 1) == 1) // 000 0110 & 1
 				{
 					if (kill(pid, SIGUSR1) == -1)
+					{
+						ft_putstr_fd("ERROR :Please enter correct arguments in this form : PID + \"str\" ", 1);
 						return(0);
+					}
 				}
 				else 
 				{
 					if(kill(pid, SIGUSR2) == -1)
+					{
+						ft_putstr_fd("ERROR :Please enter correct arguments in this form : PID + \"str\" ", 1);
 						return(0);
+					}
 				}
 				j++;
 				usleep(150);

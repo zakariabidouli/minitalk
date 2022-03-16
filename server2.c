@@ -6,12 +6,11 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:42:43 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/14 17:22:18 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:38:15 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
 
 void	print(void)
 {
@@ -34,8 +33,6 @@ void	handler(int signum)
 {
 	if (signum == SIGUSR1)
 	{
-		// usleep(50);
-
 		get_char.ch ^= 1<<get_char.bit;
 		get_char.bit++;
 	}
@@ -44,7 +41,6 @@ void	handler(int signum)
 		if (signum == SIGUSR2)
 			get_char.bit++;
 	}
-
 }
 
 
