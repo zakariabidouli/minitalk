@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:57 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/13 16:08:27 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:11:37 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
-
 
 void	ft_putnbr_fd(int n, int fd)
 {
@@ -29,7 +28,6 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 	ft_putchar_fd(n % 10 + '0', fd);
 }
-
 
 int	ft_atoi(const char *str)
 {
