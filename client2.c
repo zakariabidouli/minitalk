@@ -36,7 +36,7 @@ void	send_signal(char *s, int i, int p)
 			}
 		}
 		j++;
-		usleep(150);
+		usleep(500);
 	}
 }
 
