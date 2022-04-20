@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/17 11:19:02 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/04/20 04:11:08 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	send_signal(char *s, int i, int p)
 			}
 		}
 		j++;
-		usleep(150);
+		usleep(750);
 	}
 }
 
