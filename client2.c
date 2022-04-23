@@ -6,7 +6,7 @@
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:12:29 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/17 11:18:41 by zbidouli         ###   ########.fr       */
+/*   Updated: 2022/04/23 23:13:57 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	send_signal(char *s, int i, int p)
 			if (kill(p, SIGUSR1) == -1)
 			{
 				ft_putstr_fd ("ERROR Please Enter : PID + \"str\" ", 1);
-				exit (0);
+				exit (1);
 			}
 		}
 		else
@@ -32,7 +32,7 @@ void	send_signal(char *s, int i, int p)
 			if (kill(p, SIGUSR2) == -1)
 			{
 				ft_putstr_fd ("ERROR Please Enter : PID + \"str\" ", 1);
-				exit (0);
+				exit (1);
 			}
 		}
 		j++;
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 		if ((kill (0, pid) != -1) || pid < 0)
 		{
 			ft_putstr_fd("ERROR: Wrong PID ", 1);
-			exit(0);
+			exit(1);
 		}
 		str = av[2];
 		i = -1;
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 			send_signal(str, i, pid);
 		}	
 		ft_putstr_fd ("Message reiceved by server ", 1);
-		exit(0);
+		exit(1);
 	}
 	else
 	{
