@@ -33,7 +33,7 @@ void	handler(int signum, struct __siginfo *info, void *vo)
 			g_char.bit++;
 	if (g_char.bit == 8)
 	{
-		if (g_char.ch == '\0')
+		if (!g_char.ch)
 			kill(info->si_pid, SIGUSR1);
 		else
 			ft_putchar_fd(g_char.ch, 1);
