@@ -1,42 +1,30 @@
 .PHONY: all clean fclean re
 
-CC 		= gcc
+NAME1 = server
 
-FLAGS	= -Wall -Wextra -Werror
+NAME2 = client
 
-all: c2 s2 c
+SOURCE = utils.c 
 
-# server.o: server.c utils.c minitalk.h
-# 	$(CC) $(FLAGS) -c server.c utils.c
+CC = gcc
 
-server2.o: server2.c utils.c minitalk.h
-	$(CC) $(FLAGS) -c server2.c utils.c
+CFLAGS = -Wall -Wextra -Werror
 
-utils.o: utils.c minitalk.h
-	$(CC) $(FLAGS) -c utils.c
+OBJ = $(SOURCE:.c=.o)
 
-client.o: client.c utils.c minitalk.h
-	$(CC) $(FLAGS) -c client.c utils.c
+̦DEFS = minitalk.h
 
-client2.o: client2.c utils.c minitalk.h
-	$(CC) $(FLAGS) -c client2.c utils.c
+all: $(NAME1) $(NAME2)
 
-# s: server.o utils.o
-# 	$(CC) $(FLAGS)  server.o utils.o -o server
+$(NAME1) : server.c  $(DEFS)
+	$(CC) $(CFLAGS) server.c $(SOURCE) -o server
+$(NAME2) : client.c $(DEFS)
+	$(CC) $(CFLAGS) client.c $(SOURCE) -o client
 
-s2: server2.o utils.o
-	$(CC) $(FLAGS)  server2.o utils.o -o server2
-
-c: client.o utils.o 
-	$(CC) $(FLAGS)  client.o utils.o -o client
-
-c2: client2.o utils.o 
-	$(CC) $(FLAGS)  client2.o utils.o -o client2
 	
 clean:
-	rm -rf *.o *~
-
+	@rm -rf $(OBJ)
 fclean: clean
-	rm -rf client client2 server2
+	@rm -rf $(NAME1) $(NAME2)
 
-re: fclean all
+re: fclean all 

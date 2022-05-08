@@ -31,5 +31,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *str);
 int		ft_isspace_isdigit(char c, int flag);
+void	server_response(int sig);
 
 #endif

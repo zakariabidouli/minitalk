@@ -1,66 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbidouli <zbidouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 22:12:48 by zbidouli          #+#    #+#             */
-/*   Updated: 2022/03/17 11:17:23 by zbidouli         ###   ########.fr       */
+/*   Created: 2022/03/13 13:42:43 by zbidouli          #+#    #+#             */
+/*   Updated: 2022/03/17 10:55:38 by zbidouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	print(void)
+void	handler(int signum, struct __siginfo *info, void *vo)
 {
-	while (1)
-	{
-		pause();
-		if (g_char.bit == 8)
-		{
-			if (g_char.ch == '\0')
-				ft_putchar_fd('\n', 1);
-			else
-				ft_putchar_fd(g_char.ch, 1);
-			g_char.bit = 0;
-			g_char.ch = 0;
-		}
-	}
-}
+	(void)*vo;
+	int pid;
 
-void	function_1(int signum)
-{
+	pid = 0;
+	if (pid != info->si_pid)
+	{	
+		pid = info->si_pid;
+		g_char.ch = 0;
+		g_char.bit = 0;
+	}
 	if (signum == SIGUSR1)
 	{
 		g_char.ch ^= 1 << g_char.bit;
 		g_char.bit++;
 	}
-}
-
-void	function_2(int signum)
-{
-	if (signum == SIGUSR2)
-		g_char.bit++;
+	else if (signum == SIGUSR2)
+			g_char.bit++;
+	if (g_char.bit == 8)
+	{
+		if (g_char.ch == '\0')
+			kill(info->si_pid, SIGUSR1);
+		else
+			ft_putchar_fd(g_char.ch, 1);
+		g_char.bit = 0;
+		g_char.ch = 0;
+	}
 }
 
 int	main(void)
 {
-	int	pid;
+	struct sigaction	sa;
 
-	pid = getpid();
 	g_char.bit = 0;
 	g_char.ch = 0;
-	ft_putstr_fd ("Process is running... PID: ", 1);
-	ft_putnbr_fd (pid, 1);
-	ft_putchar_fd ('\n', 1);
-	signal(SIGUSR1, function_1);
-	signal(SIGUSR2, function_2);
-	print ();
-	return (1);
+	ft_putstr_fd("Process is running... PID: ", 1);
+	ft_putnbr_fd(getpid(), 1);
+	ft_putchar_fd('\n', 1);
+	sa.sa_sigaction = handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+	while(1)
+		pause();
+	return (0);
 }
-
-// 0000	001 << bit
-// 0000 000 ^ 0000 001 = 0000 001 
-// 0000 000 ^ 0000 010 = 0000 010 
-// 						 0000 011	
