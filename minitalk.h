@@ -22,8 +22,8 @@ typedef struct s_char
 {
 	int	bit;
 	int	ch;
+	int pid;
 }	t_char;
-
 t_char	g_char;
 
 void	ft_putchar_fd(char c, int fd);

@@ -12,9 +12,9 @@
 
 #include "minitalk.h"
 
-void	server_response(int sig)
+void	server_response(int signum)
 {
-	(void)sig;
+	(void)signum;
 	ft_putstr_fd("MESSAGE SENT SUCCESSFULLY", 1);
 }
 
@@ -42,7 +42,7 @@ void	send_signal(char *s, int i, int p)
 			}
 		}
 		j++;
-		usleep(300);
+		usleep(150);
 	}
 }
 
@@ -52,9 +52,9 @@ int	main(int ac, char **av)
 	int		pid;
 	int		i;
 
+	signal(SIGUSR1, server_response);
 	if (ac == 3)
 	{
-		signal(SIGUSR1, server_response);
 		pid = ft_atoi(av[1]);
 		if ((kill (0, pid) != -1) || pid < 0)
 		{
@@ -65,8 +65,8 @@ int	main(int ac, char **av)
 		i = -1;
 		while (str[++i])
 			send_signal(str, i, pid);
+		return (0);
 	}
 	else
 		ft_putstr_fd ("ERROR Please Enter : PID + \"str\" ", 1);
-	return (0);
 }
