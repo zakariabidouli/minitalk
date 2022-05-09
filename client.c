@@ -42,7 +42,7 @@ void	send_signal(char *s, int i, int p)
 			}
 		}
 		j++;
-		usleep(150);
+		usleep(300);
 	}
 }
 
@@ -52,7 +52,6 @@ int	main(int ac, char **av)
 	int		pid;
 	int		i;
 
-	signal(SIGUSR1, server_response);
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
@@ -61,6 +60,7 @@ int	main(int ac, char **av)
 			ft_putstr_fd("ERROR: Wrong PID ", 1);
 			exit(0);
 		}
+		signal(SIGUSR1, server_response);
 		str = av[2];
 		i = -1;
 		while (str[++i])
